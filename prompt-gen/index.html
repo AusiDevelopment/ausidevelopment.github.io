@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Prompt-Generator | A.U.S.I. Development</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0f0f0f;
+            color: #f0f0f0;
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.2);
+            margin-right: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #00ffff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #prompt-output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-left: 4px solid #00ffff;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🛠️ Interaktiver Prompt-Generator</h1>
+
+<p>Wähle aus, was du brauchst – wir generieren deinen Anfrage-Text automatisch:</p>
+
+<form id="prompt-form">
+    <label><input type="checkbox" value="einen Minecraft-Server mit Spigot und Java-Installation"> Minecraft-Server mit Spigot</label>
+    <label><input type="checkbox" value="einen Discord-Bot mit Ticketsystem, Slash-Befehlen und Logging"> Discord-Bot (Ticketsystem)</label>
+    <label><input type="checkbox" value="ein Plugin mit Crate-System, GUI und Belohnungen"> Crate-Plugin mit GUI</label>
+    <label><input type="checkbox" value="eine vollständige Serverabsicherung (UFW, SSH-Härtung, Fail2Ban)"> Server-Absicherung</label>
+    <label><input type="checkbox" value="eine Website mit Discord-OAuth2 Login und Account-Verknüpfung"> Discord-Webseite mit Login</label>
+    <label><input type="checkbox" value="ein automatisiertes MySQL-System mit Backup und Zugriffsschutz"> MySQL + Backup-System</label>
+    <label><input type="checkbox" value="ein individuelles Citybuild-Konzept mit Rängen, Coins und Wirtschaft"> Citybuild-Konzept</label>
+</form>
+
+<button onclick="generatePrompt()">🎯 Prompt erstellen</button>
+
+<div id="prompt-output">⬅️ Hier erscheint dein generierter Prompt...</div>
+
+<script>
+    function generatePrompt() {
+        const checkedItems = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
+        const promptBox = document.getElementById('prompt-output');
+
+        if (checkedItems.length === 0) {
+            promptBox.textContent = "Bitte wähle mindestens ein Projekt aus.";
+            return;
+        }
+
+        const selected = checkedItems.map(item => item.value);
+        const result = `Ich interessiere mich für folgende Leistungen bei A.U.S.I. Development:\n\n- ${selected.join("\n- ")}\n\nBitte gebt mir Infos zu Kosten, Dauer und Voraussetzungen.`;
+
+        promptBox.textContent = result;
+    }
+</script>
+
+</body>
+</html>
